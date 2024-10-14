@@ -30,5 +30,5 @@ WoW has a built-in LUA space that lets users write their own addons. This is a p
 
 `RandomRoll()`
 
-![My Awesome Image](https://github.com/MrFade321/blob/main/Hacking_World_of_Warcraft/RandomRoll.png)
+![RandomRoll](RandomRoll.png)
 
