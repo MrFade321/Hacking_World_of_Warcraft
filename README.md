@@ -108,3 +108,10 @@ So, what the heck is an OPcode? It’s basically a special ID for each packet th
 
 We can go ahead and snag those defines and simply reference our OPcode from that info!
 
+# 📚 Conclusion of Part 1
+
+In hopes of not turning this blog post into a book, I think it’s a decent spot to wrap up Part 1. I’ve successfully hooked the `NetSend` function and can extract various data from the `CDataStore->Buffer`, namely the OPcode that defines the packet type.
+
+In Part 2, I’ll tackle piping the packet data back and forth to an external C# process (where I can whip up a little UI) and handle edits there before returning the `CDataStore` back to our WoW process! I’ll also integrate Lua (via Sol3) into our C++ DLL to allow for the creation and sending of our own custom packets!
+
+![Result](Result.png)
