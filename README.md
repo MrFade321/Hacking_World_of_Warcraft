@@ -4,7 +4,7 @@ Hey there! I've been playing World of Warcraft for a few years now, and naturall
 
 # 🎯 The Goal
 
-So, what’s the aim of this project? It's all about exploring new systems and methods for reversing binaries while having a laugh at WoW's server anti-cheat logic. My mission? To whip up a program that lets me catch and edit WoW packets before they hit the server. 
+So, what’s the aim of this project? It's all about exploring new systems and methods for reversing binaries while having a laugh at WoW's server anti-cheat logic. My mission? To write up a program that lets me catch and edit WoW packets before they hit the server. 
 
 **P.S.** Just to clarify, this isn’t a how-to guide on hacking or sharing any risky code. Everything here is done on the live version of WoW. Let’s keep it safe and fun!
 
