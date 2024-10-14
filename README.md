@@ -32,3 +32,8 @@ WoW has a built-in LUA space that lets users write their own addons. This is a p
 
 ![RandomRoll](RandomRoll.png)
 
+Now if you have never seen an IDA dump before this is pretty much the cleanest they will get without having the actual source code. 
+
+In-game you can input a command in the chat as /roll and the chat will print out a random number between 1-100 (by default).
+
+Under the hood, the client is calling the above screenshot to handle this. I will try keep this as a fairly high level over view but its clear to see that the client is creating a JAM message (Wows serialization system) and then its passing that JAM message over to a curios ClientServies::Send function
