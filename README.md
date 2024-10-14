@@ -43,3 +43,10 @@ Under the hood, the client is calling the above screenshot to handle this. I wil
 Following that Send function we are introduced to another type CDatastore  and yet another NetClient:Send function. From this point we can begin to understand that the JAM system basically wraps this NetClient::Send function and all JAM messages are basically serialized down to a CDatastore struct.  However we don’t want to place our hook here. Simply because in this function a2 is still a JAM message and the actual conversion takes place on line 15 from a JAM to a CDatastore, We don’t want to deal with the JAM client structure so we follow the NetClient:Send function one layer deeper (as you can see the CDatastore is passed into it at v5).
 
 I wont share the NetSend::Send function here simply because it’s a rather big scary function and wouldn’t be explained well enough in one screenshot however, it basically takes the CDatastore and does various packing / encryption to send over the actual network layer. I do not want to deal with any sort of encryption / decryption so we will place our hook at the lowest point I am willing to go NetClient::Send();
+
+
+# 🎣 JuSt HoOk iT tHeN?
+Oh, if only it were that easy! Blizzard clearly doesn’t want me hooking random functions in their binary, so they’ve put some serious limits on memory space permissions to prevent anyone from rewriting their code. I won’t dive too deep into how to bypass this protection—let’s just say I’m not here to write a guide on speedrunning a lawsuit. But after a bit of coding magic, I’ve managed to change the memory regions to RWX, which means we can edit the codebase freely!
+
+# 🌀 Minor Tangent
+I’ve read various dev blog posts that leave me in awe of the authors' skills. But I often forget just how much time and effort goes into their projects. The truth is, anyone can tackle this stuff if you’re dedicated and ready to learn! Trust me, I’m skipping over a lot of the headaches I faced along the way in this post!
