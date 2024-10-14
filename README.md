@@ -26,6 +26,6 @@ The TrinityCore repo is going to be a big player in this project moving forward.
 
 # 🕵️‍♂️ Getting into the Weeds
 
-WoW has a built-in LUA space that lets users whip up their own addons. This is a perfect starting point for me, as it allows me to easily trace the execution down to the network layer (my goal is to manipulate packets). To kick things off, I’m diving into something simple:
+WoW has a built-in LUA space that lets users write their own addons. This is a perfect starting point for me, as it allows me to easily trace the execution down to the network layer (my goal is to manipulate packets). To kick things off, I’m diving into something simple:
 
 `RandomRoll()`
