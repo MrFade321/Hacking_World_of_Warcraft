@@ -1,6 +1,6 @@
 # 🌟 Intro
 
-Hey there! I've been playing world of World of Warcraft for a few years now, and naturally, curiosity got the best of me. I wanted to peek under the hood and see how everything ticked. That's how this wild project began! Join me on this journey as I share what I've achieved and the fun stuff I've learned along the way.
+Hey there! I've been playing World of Warcraft for a few years now, and naturally, curiosity got the best of me. I wanted to peek under the hood and see how everything ticked. That's how this wild project began! Join me on this journey as I share what I've achieved and the fun stuff I've learned along the way.
 
 # 🎯 The Goal
 
