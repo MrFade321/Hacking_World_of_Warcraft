@@ -50,3 +50,61 @@ Oh, if only it were that easy! Blizzard clearly doesn’t want me hooking random
 
 # 🌀 Minor Tangent
 I’ve read various dev blog posts that leave me in awe of the authors' skills. But I often forget just how much time and effort goes into their projects. The truth is, anyone can tackle this stuff if you’re dedicated and ready to learn! Trust me, I’m skipping over a lot of the headaches I faced along the way in this post!
+
+# 📦 CDataStore
+
+```cpp
+struct CDataStore
+{
+    uint64_t* VTable;
+    uint8_t* Buffer;
+    unsigned int m_base; // 0x10
+    int m_alloc;         // 0x14
+    unsigned int Length;
+    unsigned int m_read; // 0x1C
+
+    CDataStore(unsigned int size)
+    {
+        VTable = Offset::CDataStore_VTable;
+        Buffer = new uint8_t[size];
+        m_base = 0;
+        m_alloc = 0x100;
+        Length = size;
+        m_read = 0x10;
+    }
+
+    ~CDataStore()
+    {
+        delete[] Buffer;
+        Buffer = nullptr;
+    }
+
+    ByteBuffer ToByteBuffer() const {
+        ByteBuffer byteBuffer;
+        byteBuffer.append(Buffer, Length);
+        return byteBuffer;
+    }
+};
+```
+
+Now that we have our hook in place, we need to start handling the parameters and reading out those juicy packets!
+
+I’ve shared the CDataStore structure here for the more C++-oriented readers. A special note: remember that 0x100 is not the same as 100. That typo cost me hours of my life during this project.
+
+The CDataStore is the meat of what we’ll be handling. The Buffer is essentially an array of bytes that contains all the information of the packet.
+
+The first few bytes (0x10) of the buffer are the header of the packet, and honestly, I haven't spent much time understanding it, as I think it's mainly used further down the pipeline for possibly encryption, etc.
+
+I start reading all the relevant info from 0x10 since that’s where the OPcode is stored:
+
+```cpp
+auto opcode = *(WORD*)(CDataStore->Buffer + 0x10);
+```
+
+So, what the heck is an OPcode? It’s basically a special ID for each packet that declares the packet type. Remember when I said the TrinityCore project did amazing work emulating a WoW server? Well, they have all the OPcodes reversed (amazing stuff):
+
+[TC Opcodes!](https://github.com/TrinityCore/TrinityCore/blob/1e470610ac411c81ff0b93371b3a04c3432008e9/src/server/game/Server/Protocol/Opcodes.h#L51)
+
+
+We can go ahead and snag those defines and simply reference our OPcode from that info!
+
